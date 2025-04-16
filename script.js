@@ -17,17 +17,34 @@ form.addEventListener("submit", function(e) {
   .catch(err => document.getElementById("results").innerHTML = "Error: " + err);
 });
 
-function matchup(name, team1, team2) {
-  if (!team1 || !team2) return "";
+function createMatchup(name, team1, team2) {
+  if (!team1 || !team2) return null;
+  const div = document.createElement("div");
+  div.className = "dynamic-matchup";
+
   const normalize = str => str.toLowerCase().replace(/ /g, "_");
-  return `
-    <fieldset class="dynamic-matchup">
-      <legend>${name}</legend>
-      <label><input type="radio" name="${name}" value="${team1}" required />
-        <img src="assets/logos/${normalize(team1)}.png" class="logo" /> ${team1}</label>
-      <label><input type="radio" name="${name}" value="${team2}" required />
-        <img src="assets/logos/${normalize(team2)}.png" class="logo" /> ${team2}</label>
-    </fieldset>`;
+
+  const legend = document.createElement("strong");
+  legend.textContent = name;
+  div.appendChild(legend);
+
+  [team1, team2].forEach(team => {
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = name;
+    input.value = team;
+    input.required = true;
+    const img = document.createElement("img");
+    img.src = "assets/logos/" + normalize(team) + ".png";
+    img.className = "logo";
+    label.appendChild(input);
+    label.appendChild(img);
+    label.appendChild(document.createTextNode(team));
+    div.appendChild(label);
+  });
+
+  return div;
 }
 
 function updateBracket() {
@@ -36,21 +53,19 @@ function updateBracket() {
     picks[input.name] = input.value;
   });
 
-  const container = document.createElement("div");
-  container.innerHTML = "";
+  section.innerHTML = "";
 
-  const r2matchups = [
-    matchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3)
-  ];
-  container.innerHTML += r2matchups.join("");
+  const r2 = createMatchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3);
+  if (r2) section.appendChild(r2);
 
-  if (picks.EastSemi1 && picks.EastSemi2)
-    container.innerHTML += matchup("EastFinal", picks.EastSemi1, picks.EastSemi2);
-  if (picks.WestSemi1 && picks.WestSemi2)
-    container.innerHTML += matchup("WestFinal", picks.WestSemi1, picks.WestSemi2);
+  const eastFinal = createMatchup("EastFinal", picks.EastSemi1, "Lightning");
+  if (picks.EastSemi1 && picks.EastSemi2) {
+    const r3 = createMatchup("EastFinal", picks.EastSemi1, picks.EastSemi2);
+    if (r3) section.appendChild(r3);
+  }
 
-  if (picks.EastFinal && picks.WestFinal)
-    container.innerHTML += matchup("StanleyCupWinner", picks.EastFinal, picks.WestFinal);
-
-  section.replaceChildren(...container.children);
+  if (picks.EastFinal && picks.WestFinal) {
+    const final = createMatchup("StanleyCupWinner", picks.EastFinal, picks.WestFinal);
+    if (final) section.appendChild(final);
+  }
 }
