@@ -1,4 +1,4 @@
-const scriptURL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxKWQT4VJbxvmNETNVTGeSnE5uT9jgfsan8kkutK3qHDlQSFGcAQrCqHbyLPckVeMenAA/exec";
 const form = document.getElementById("bracket-form");
 const section = document.getElementById("dynamic-rounds");
 
@@ -20,11 +20,11 @@ form.addEventListener("submit", function(e) {
 function matchup(name, team1, team2) {
   if (!team1 || !team2) return "";
   return `
-    <div class="dynamic-matchup">
-      <strong>${name}:</strong><br>
+    <fieldset class="dynamic-matchup">
+      <legend>${name}</legend>
       <label><input type="radio" name="${name}" value="${team1}" required /> ${team1}</label>
       <label><input type="radio" name="${name}" value="${team2}" required /> ${team2}</label>
-    </div>`;
+    </fieldset>`;
 }
 
 function updateBracket() {
@@ -33,20 +33,26 @@ function updateBracket() {
     picks[input.name] = input.value;
   });
 
-  section.innerHTML = "";
+  const container = document.createElement("div");
+  container.innerHTML = "";
 
-  const eastSemi1 = matchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3);
-  const eastSemi2 = matchup("EastSemi2", picks.M1vsWC2, picks.M2vsM3);
-  const westSemi1 = matchup("WestSemi1", picks.C1vsWC2, picks.C2vsC3);
-  const westSemi2 = matchup("WestSemi2", picks.P1vsWC1, picks.P2vsP3);
+  const r2matchups = [
+    matchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3),
+    matchup("EastSemi2", picks.M1vsWC2, picks.M2vsM3),
+    matchup("WestSemi1", picks.C1vsWC2, picks.C2vsC3),
+    matchup("WestSemi2", picks.P1vsWC1, picks.P2vsP3)
+  ];
+  container.innerHTML += r2matchups.join("");
 
-  section.innerHTML += eastSemi1 + eastSemi2 + westSemi1 + westSemi2;
+  if (picks.EastSemi1 && picks.EastSemi2) {
+    container.innerHTML += matchup("EastFinal", picks.EastSemi1, picks.EastSemi2);
+  }
+  if (picks.WestSemi1 && picks.WestSemi2) {
+    container.innerHTML += matchup("WestFinal", picks.WestSemi1, picks.WestSemi2);
+  }
+  if (picks.EastFinal && picks.WestFinal) {
+    container.innerHTML += matchup("StanleyCupWinner", picks.EastFinal, picks.WestFinal);
+  }
 
-  if (picks.EastSemi1 && picks.EastSemi2)
-    section.innerHTML += matchup("EastFinal", picks.EastSemi1, picks.EastSemi2);
-  if (picks.WestSemi1 && picks.WestSemi2)
-    section.innerHTML += matchup("WestFinal", picks.WestSemi1, picks.WestSemi2);
-
-  if (picks.EastFinal && picks.WestFinal)
-    section.innerHTML += matchup("StanleyCupWinner", picks.EastFinal, picks.WestFinal);
+  section.replaceChildren(...container.children);
 }
