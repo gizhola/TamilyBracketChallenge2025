@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2025 NHL Bracket Picker</title>
+  <title>NHL Bracket Picker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,46 +14,20 @@
     </label>
 
     <section id="round1">
-      <h2>Round 1 (Pick Winner & Games)</h2>
+      <h2>Round 1</h2>
       <div class="matchup"><label>A1vsWC1:</label>
-        <label><input type="radio" name="A1vsWC1" value="Maple Leafs" required /> Maple Leafs</label>
-        <label><input type="radio" name="A1vsWC1" value="Senators" /> Senators</label>
+        <label><input type="radio" name="A1vsWC1" value="Maple Leafs" required />
+          <img src="assets/logos/maple_leafs.png" class="logo" /> Maple Leafs</label>
+        <label><input type="radio" name="A1vsWC1" value="Senators" />
+          <img src="assets/logos/senators.png" class="logo" /> Senators</label>
         <input type="number" name="GAMES_A1vsWC1" min="4" max="7" required />
       </div>
       <div class="matchup"><label>A2vsA3:</label>
-        <label><input type="radio" name="A2vsA3" value="Lightning" required /> Lightning</label>
-        <label><input type="radio" name="A2vsA3" value="Panthers" /> Panthers</label>
+        <label><input type="radio" name="A2vsA3" value="Lightning" required />
+          <img src="assets/logos/lightning.png" class="logo" /> Lightning</label>
+        <label><input type="radio" name="A2vsA3" value="Panthers" />
+          <img src="assets/logos/panthers.png" class="logo" /> Panthers</label>
         <input type="number" name="GAMES_A2vsA3" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>M1vsWC2:</label>
-        <label><input type="radio" name="M1vsWC2" value="Capitals" required /> Capitals</label>
-        <label><input type="radio" name="M1vsWC2" value="Canadiens" /> Canadiens</label>
-        <input type="number" name="GAMES_M1vsWC2" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>M2vsM3:</label>
-        <label><input type="radio" name="M2vsM3" value="Hurricanes" required /> Hurricanes</label>
-        <label><input type="radio" name="M2vsM3" value="Devils" /> Devils</label>
-        <input type="number" name="GAMES_M2vsM3" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>C1vsWC2:</label>
-        <label><input type="radio" name="C1vsWC2" value="Jets" required /> Jets</label>
-        <label><input type="radio" name="C1vsWC2" value="Blues" /> Blues</label>
-        <input type="number" name="GAMES_C1vsWC2" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>C2vsC3:</label>
-        <label><input type="radio" name="C2vsC3" value="Stars" required /> Stars</label>
-        <label><input type="radio" name="C2vsC3" value="Avalanche" /> Avalanche</label>
-        <input type="number" name="GAMES_C2vsC3" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>P1vsWC1:</label>
-        <label><input type="radio" name="P1vsWC1" value="Golden Knights" required /> Golden Knights</label>
-        <label><input type="radio" name="P1vsWC1" value="Wild" /> Wild</label>
-        <input type="number" name="GAMES_P1vsWC1" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>P2vsP3:</label>
-        <label><input type="radio" name="P2vsP3" value="Kings" required /> Kings</label>
-        <label><input type="radio" name="P2vsP3" value="Oilers" /> Oilers</label>
-        <input type="number" name="GAMES_P2vsP3" min="4" max="7" required />
       </div>
     </section>
 

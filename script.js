@@ -1,4 +1,4 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxKWQT4VJbxvmNETNVTGeSnE5uT9jgfsan8kkutK3qHDlQSFGcAQrCqHbyLPckVeMenAA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzGf6dB4koCYpYCQirVUmWpflHT8TYAW2CWh0ykKFmi/dev";
 const form = document.getElementById("bracket-form");
 const section = document.getElementById("dynamic-rounds");
 
@@ -19,11 +19,14 @@ form.addEventListener("submit", function(e) {
 
 function matchup(name, team1, team2) {
   if (!team1 || !team2) return "";
+  const normalize = str => str.toLowerCase().replace(/ /g, "_");
   return `
     <fieldset class="dynamic-matchup">
       <legend>${name}</legend>
-      <label><input type="radio" name="${name}" value="${team1}" required /> ${team1}</label>
-      <label><input type="radio" name="${name}" value="${team2}" required /> ${team2}</label>
+      <label><input type="radio" name="${name}" value="${team1}" required />
+        <img src="assets/logos/${normalize(team1)}.png" class="logo" /> ${team1}</label>
+      <label><input type="radio" name="${name}" value="${team2}" required />
+        <img src="assets/logos/${normalize(team2)}.png" class="logo" /> ${team2}</label>
     </fieldset>`;
 }
 
@@ -37,22 +40,17 @@ function updateBracket() {
   container.innerHTML = "";
 
   const r2matchups = [
-    matchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3),
-    matchup("EastSemi2", picks.M1vsWC2, picks.M2vsM3),
-    matchup("WestSemi1", picks.C1vsWC2, picks.C2vsC3),
-    matchup("WestSemi2", picks.P1vsWC1, picks.P2vsP3)
+    matchup("EastSemi1", picks.A1vsWC1, picks.A2vsA3)
   ];
   container.innerHTML += r2matchups.join("");
 
-  if (picks.EastSemi1 && picks.EastSemi2) {
+  if (picks.EastSemi1 && picks.EastSemi2)
     container.innerHTML += matchup("EastFinal", picks.EastSemi1, picks.EastSemi2);
-  }
-  if (picks.WestSemi1 && picks.WestSemi2) {
+  if (picks.WestSemi1 && picks.WestSemi2)
     container.innerHTML += matchup("WestFinal", picks.WestSemi1, picks.WestSemi2);
-  }
-  if (picks.EastFinal && picks.WestFinal) {
+
+  if (picks.EastFinal && picks.WestFinal)
     container.innerHTML += matchup("StanleyCupWinner", picks.EastFinal, picks.WestFinal);
-  }
 
   section.replaceChildren(...container.children);
 }
