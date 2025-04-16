@@ -1,21 +1,6 @@
 
-body {
-  font-family: Arial;
-  margin: 20px;
-}
-form {
-  max-width: 800px;
-  margin: auto;
-}
-.matchup, .dynamic-matchup {
-  margin-bottom: 15px;
-}
-label {
-  display: block;
-  margin: 4px 0;
-}
-.logo {
-  width: 25px;
-  vertical-align: middle;
-  margin-right: 6px;
-}
+body { font-family: Arial; margin: 20px; }
+form { max-width: 800px; margin: auto; }
+.matchup, .dynamic-matchup { margin-bottom: 15px; }
+label { display: block; margin: 4px 0; }
+.logo { width: 25px; vertical-align: middle; margin-right: 6px; }

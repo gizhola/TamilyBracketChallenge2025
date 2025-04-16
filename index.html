@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NHL Bracket Picker</title>
+  <title>2025 NHL Bracket Picker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,34 +12,16 @@
     <label>Bracket Name:
       <input type="text" name="Bracket Name" required />
     </label>
-
     <section id="round1">
-      <h2>Round 1</h2>
-      <div class="matchup"><label>A1vsWC1:</label>
-        <label><input type="radio" name="A1vsWC1" value="Maple Leafs" required />
-          <img src="assets/logos/maple_leafs.png" class="logo" /> Maple Leafs</label>
-        <label><input type="radio" name="A1vsWC1" value="Senators" />
-          <img src="assets/logos/senators.png" class="logo" /> Senators</label>
-        <input type="number" name="GAMES_A1vsWC1" min="4" max="7" required />
-      </div>
-      <div class="matchup"><label>A2vsA3:</label>
-        <label><input type="radio" name="A2vsA3" value="Lightning" required />
-          <img src="assets/logos/lightning.png" class="logo" /> Lightning</label>
-        <label><input type="radio" name="A2vsA3" value="Panthers" />
-          <img src="assets/logos/panthers.png" class="logo" /> Panthers</label>
-        <input type="number" name="GAMES_A2vsA3" min="4" max="7" required />
-      </div>
+      <h2>Round 1 (Pick winner + # of games)</h2>
+      <!-- Matchups will be added by script.js -->
     </section>
-
-    <section id="dynamic-rounds"></section>
-
+    <section id="rounds-2-4"></section>
     <label>Total Goals in Final:
       <input type="number" name="TotalGoalsFinal" required />
     </label>
-
     <button type="submit">Submit Bracket</button>
   </form>
-
   <div id="results"></div>
   <script src="script.js"></script>
 </body>
