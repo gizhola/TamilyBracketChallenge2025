@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2025 NHL Bracket Picker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>2025 NHL Bracket Picker</h1>
+  <form id="bracket-form">
+    <label>
+      Bracket Name:
+      <input type="text" name="Bracket Name" required />
+    </label>
+
+    <section>
+      <h2>Round 1</h2>
+      <div class="matchup" data-id="A1vsWC1">
+        <label><input type="radio" name="A1vsWC1" value="Maple Leafs" required />
+          <img src="assets/logos/maple_leafs.png" /> Maple Leafs
+        </label>
+        <label><input type="radio" name="A1vsWC1" value="Senators" />
+          <img src="assets/logos/senators.png" /> Senators
+        </label>
+        <input type="number" name="GAMES_A1vsWC1" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="A2vsA3">
+        <label><input type="radio" name="A2vsA3" value="Lightning" required />
+          <img src="assets/logos/lightning.png" /> Lightning
+        </label>
+        <label><input type="radio" name="A2vsA3" value="Panthers" />
+          <img src="assets/logos/panthers.png" /> Panthers
+        </label>
+        <input type="number" name="GAMES_A2vsA3" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="M1vsWC2">
+        <label><input type="radio" name="M1vsWC2" value="Capitals" required />
+          <img src="assets/logos/capitals.png" /> Capitals
+        </label>
+        <label><input type="radio" name="M1vsWC2" value="Canadiens" />
+          <img src="assets/logos/canadiens.png" /> Canadiens
+        </label>
+        <input type="number" name="GAMES_M1vsWC2" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="M2vsM3">
+        <label><input type="radio" name="M2vsM3" value="Hurricanes" required />
+          <img src="assets/logos/hurricanes.png" /> Hurricanes
+        </label>
+        <label><input type="radio" name="M2vsM3" value="Devils" />
+          <img src="assets/logos/devils.png" /> Devils
+        </label>
+        <input type="number" name="GAMES_M2vsM3" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="C1vsWC2">
+        <label><input type="radio" name="C1vsWC2" value="Jets" required />
+          <img src="assets/logos/jets.png" /> Jets
+        </label>
+        <label><input type="radio" name="C1vsWC2" value="Blues" />
+          <img src="assets/logos/blues.png" /> Blues
+        </label>
+        <input type="number" name="GAMES_C1vsWC2" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="C2vsC3">
+        <label><input type="radio" name="C2vsC3" value="Stars" required />
+          <img src="assets/logos/stars.png" /> Stars
+        </label>
+        <label><input type="radio" name="C2vsC3" value="Avalanche" />
+          <img src="assets/logos/avalanche.png" /> Avalanche
+        </label>
+        <input type="number" name="GAMES_C2vsC3" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="P1vsWC1">
+        <label><input type="radio" name="P1vsWC1" value="Golden Knights" required />
+          <img src="assets/logos/golden_knights.png" /> Golden Knights
+        </label>
+        <label><input type="radio" name="P1vsWC1" value="Wild" />
+          <img src="assets/logos/wild.png" /> Wild
+        </label>
+        <input type="number" name="GAMES_P1vsWC1" min="4" max="7" required />
+      </div>
+      <div class="matchup" data-id="P2vsP3">
+        <label><input type="radio" name="P2vsP3" value="Kings" required />
+          <img src="assets/logos/kings.png" /> Kings
+        </label>
+        <label><input type="radio" name="P2vsP3" value="Oilers" />
+          <img src="assets/logos/oilers.png" /> Oilers
+        </label>
+        <input type="number" name="GAMES_P2vsP3" min="4" max="7" required />
+      </div>
+    </section>
+
+    <section>
+      <h2>Round 2</h2>
+      <p>East Semi-final 1: <span class="fade" id="EastSemi1"></span></p>
+      <p>East Semi-final 2: <span class="fade" id="EastSemi2"></span></p>
+      <p>West Semi-final 1: <span class="fade" id="WestSemi1"></span></p>
+      <p>West Semi-final 2: <span class="fade" id="WestSemi2"></span></p>
+    </section>
+
+    <section>
+      <h2>Round 3 - Conference Finals</h2>
+      <p>East Final: <span class="fade" id="EastFinal"></span></p>
+      <p>West Final: <span class="fade" id="WestFinal"></span></p>
+    </section>
+
+    <section>
+      <h2>Stanley Cup Final</h2>
+      <p>Stanley Cup Final Matchup: <span class="fade" id="CupFinal"></span></p>
+      <label>
+        Stanley Cup Champion:
+        <input type="text" name="StanleyCupWinner" required />
+      </label>
+      <label>
+        Total Goals Scored in Final Series:
+        <input type="number" name="TotalGoalsFinal" min="1" required />
+      </label>
+    </section>
+
+    <button type="submit">Submit Bracket</button>
+  </form>
+  <div id="results"></div>
+  <script src="script.js"></script>
+</body>
+</html>
